@@ -92,6 +92,12 @@ class SharkContext(
       driver.setMaxRows(maxRows)
       driver.getResults(results)
       driver.destroy()
+      if (SharkConfVars.getBoolVar(hiveconf, SharkConfVars.SHARK_INCLUDE_HEADERS)) {                                                             
+        val fieldSchemas = driver.getSchema.getFieldSchemas                                                                                      
+        if (fieldSchemas != null) {                                                                                                          
+          return fieldSchemas.map(_.getName).mkString("\t")::results.toList                                                                  
+        }                                                                                                                                    
+      }
       results
     } else {
       sessionState.out.println(tokens(0) + " " + cmd_1)

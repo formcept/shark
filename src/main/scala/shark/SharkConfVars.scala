@@ -23,6 +23,9 @@ import org.apache.hadoop.hive.conf.HiveConf
 
 object SharkConfVars {
 
+  //Include headers in the result                                                                                                               
+  val SHARK_INCLUDE_HEADERS = new ConfVar("shark.include.headers",false)                                                                        
+
   val EXEC_MODE = new ConfVar("shark.exec.mode", "shark")
 
   // This is created for testing. Hive's test script assumes a certain output
